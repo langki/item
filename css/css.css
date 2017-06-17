@@ -1,0 +1,47 @@
+@charset "UTF-8";
+/*初始化  reset*/
+blockquote,body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
+body,button,input,select,textarea{font:12px/1.5 "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;color: #666;}
+ol,ul{list-style:none}
+a{text-decoration:none}
+fieldset,img{border:0;vertical-align:top;}
+a,input,button,select,textarea{outline:none;}
+a,button{cursor:pointer;}
+
+/*清除loading样式*/
+.ui-loader-default{ display:none}
+.ui-mobile-viewport{ border:none;}
+.ui-page {padding: 0; margin: 0; outline: 0} 
+
+/*清除下拉框默认样式*/
+select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  border: none;
+
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /*在选择框的最右侧中间显示小箭头图片*/
+  /*background-image: url("../images/san.png");*/
+  background-repeat: no-repeat;
+  background-color: #69B0A4;
+  background-size: 20px 10px;
+  background-position: 100% 10px;
+  padding-left:4%;
+
+
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  /*padding-right: 14px;*/
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+
+
+
+
+
+

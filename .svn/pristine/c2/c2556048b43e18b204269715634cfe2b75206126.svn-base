@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/css.css"/>
+    <style>
+        .hidden {
+            display: none !important;
+            overflow: hidden !important;
+        }
+    </style>
+    <script src="https://cdn.zjwist.com/js/jscookier.js" type="text/javascript"></script>
+    <script src="https://api.map.baidu.com/api?v=2.0&ak=2d91410e115e9d061e1b606f4cce7d1c&s=1"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/GeoUtils/1.2/src/GeoUtils_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" type="text/css">
+</head>
+<body>
+<div class="big">
+    
+    <section>
+        <!-- <div class="search"> -->
+        <input class="search" type="text" value=""> <img class="search_one" src="images/yuan.png" alt="">
+        <!-- <p>搜索关键词</p> -->
+        <!-- </div> -->
+        <div class="list">
+            <div class="list_left J-list">
+                <p>列表</p>
+                
+                <div id="triangle-down"></div>
+            </div>
+            <div class="list_right J-map">
+                <!--<a href="ditu.html" id="maptab">地图</a>-->
+                <p>地图</p>
+            </div>
+        
+        </div>
+        
+        
+        <div class="J-map-list hidden">
+            <div id="allmap" style="height: 500px;"></div>
+        </div>
+        
+        
+        <div class="details J-details-list">
+            <div class="details_top"></div>
+            <div class="details_deep">
+                <select class="area" id="selectareacode">
+                    <!-- <option value="地区">地区</option>
+                    <option value="排序">Saab</option>
+                    <option value="距离">VW</option>
+                    <option value="vwads">vwasd</option> -->
+                </select> <select id="sort">
+                <!-- <option >排序</option> -->
+                <option value="1">按距离</option>
+                <option value="2">按等级</option>
+            
+            </select>
+            </div>
+            <div id="view"></div>
+        </div>
+        <div id="map" style="width: 100%;height:100%;"></div>
+        <div class="bttom J-load-more" style="color: #fff;">
+            点击加载更多...
+        </div>
+    </section>
+</div>
+
+<script src="js/rem.js"></script>
+<!-- <script src="js/jquery.mobile-1.4.5.min.js"></script> -->
+<!-- 引入 jQuery 库 -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/search.js"></script>
+
+<script>
+    $(function () {
+        $(".J-list, .J-map").on("click", function () {
+            $(".J-details-list,.J-map-list").toggleClass("hidden");
+        });
+    })
+</script>
+</body>
+</html>

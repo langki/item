@@ -1,0 +1,268 @@
+window.onload = function () {
+    (function ($) {
+        $.getUrlParam = function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+    })(jQuery);
+    
+    var createMap = function (mapData) {
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");    // 创建Map实例
+        // debugger;
+        map.centerAndZoom(new BMap.Point(mapData[0].gpsbd.split(",")[1], mapData[0].gpsbd.split(",")[0]), 9);  // 初始化地图,设置中心点坐标和地图级别
+        // map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+        // map.setCurrentCity("杭州");          // 设置地图显示的城市 此项是必须设置的
+        
+        var markerArr = [];
+        
+        mapData.forEach(function (key, index) {
+            markerArr.push({
+                title: key.unitname,
+                point: key.gpsbd.split(",")[1] + "," + key.gpsbd.split(",")[0],
+                address: key.address
+            })
+        });
+        var point = new Array(); //存放标注点经纬信息的数组
+        var marker = new Array(); //存放标注点对象的数组
+        var info = new Array(); //存放提示信息窗口对象的数组
+        for (var i = 0; i < markerArr.length; i++) {
+            var p0 = markerArr[i].point.split(",")[0]; //
+            var p1 = markerArr[i].point.split(",")[1]; //按照原数组的point格式将地图点坐标的经纬度分别提出来
+            point[i] = new window.BMap.Point(p0, p1); //循环生成新的地图点
+            marker[i] = new window.BMap.Marker(point[i]); //按照地图点坐标生成标记
+            map.addOverlay(marker[i]);
+            marker[i].setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+            var label = new window.BMap.Label(markerArr[i].title, {offset: new window.BMap.Size(20, -10)});
+            marker[i].setLabel(label);
+            info[i] = new window.BMap.InfoWindow("<p style=’font-size:12px;lineheight:1.8em;’>" + markerArr[i].title + "</br>地址：" + markerArr[i].address + "</br> 电话：" + markerArr[i].tel + "</br></p>"); // 创建信息窗口对象
+        }
+    }
+    
+    var getDesc = function (desc, len) {
+        len = len || 60;
+        if (!desc) {
+            return "";
+        }
+        if (desc.length > len) {
+            return desc.substr(0, len) + "...";
+        }
+        
+        return desc;
+    }
+    
+    var _unitid = $.getUrlParam('unitid');
+    $.getJSON("https://rapi.zjwist.com/WapDisplay/GetUnitInfo", {
+        unitid: _unitid
+    }, function (data) {
+        // 拼接字符串
+        if (data.code == 0) {
+            var unitinfostr = "";
+            var star = "AAAAA";
+            $.each(data.data, function (index, typeinfo) {
+                // 页面标题部分
+                unitinfostr += "<div class='top'>";
+                unitinfostr += "<h1>" + typeinfo.pubinfounit.unitname + "</h1>";
+                //debugger;
+                if (typeinfo.pubinfounit.level>=1&&typeinfo.pubinfounit.level<6) {
+                    unitinfostr +="<div class='top_three'>";
+                    unitinfostr += "<div class='top_one'>";
+                    unitinfostr += "<p>" + star.substr(0, typeinfo.pubinfounit.level) + "</p>";
+                    unitinfostr += "</div>";
+                    unitinfostr += "<div class='top_two'>";
+                    unitinfostr += "<p>" + typeinfo.pubinfounit.address + "</p>";
+                    unitinfostr += "</div>";
+                    unitinfostr += "</div>";
+                }
+                if (typeinfo.pubinfounit.address) {
+                    // unitinfostr += "<div class='top_two'>";
+                    // unitinfostr += "<p>" + typeinfo.pubinfounit.address + "</p>";
+                    // unitinfostr += "</div>";
+                }
+                
+                // 轮播图部分
+                unitinfostr += "<div class='slider' id='slider'>";
+                unitinfostr += "<ul class='clearfix' id='clearfix'>";
+                unitinfostr += "<li><img src=\'" + typeinfo.picinfos[0].picurl + "?width=320\'/></li>";
+                
+                $.each(typeinfo.picinfos, function (index, typeinfo) {
+                    unitinfostr += "<li><img src=\'" + typeinfo.picurl + "\'/></li>"
+                });
+                
+                unitinfostr += "<li><img src=\'" + typeinfo.picinfos[typeinfo.picinfos.length - 1].picurl + "\'/></li>";
+                unitinfostr += "</ul>";
+                unitinfostr += "<ul class='circle'>";
+                
+                $.each(typeinfo.picinfos, function (index, typeinfo) {
+                    if (index = 0) {
+                        unitinfostr += "<li class='now'></li>"
+                    }
+                    unitinfostr += "<li></li>"
+                });
+                
+                unitinfostr += "</ul>";
+                unitinfostr += "</div>";
+                
+                // 景区简介
+                
+                
+                unitinfostr += "<div class='article'>";
+                unitinfostr += "<p>" + (typeinfo.pubinfounit.desc || "") + "</p>";
+                unitinfostr += "<h1>查看全部简介</h1>";
+                unitinfostr += "<div id='triangle-right'></div>";
+                unitinfostr += "</div>";
+                //景区基本信息
+                unitinfostr += "<div class='details'>"; //外面的盒子 start
+                
+                unitinfostr += "<div class='details_one'>";
+                unitinfostr += "<h1>地&nbsp址</h1>";
+                unitinfostr += "<div class='details_two'><p>" + typeinfo.pubinfounit.areaname + "</p></div>";
+                unitinfostr += "</div>";
+                
+                unitinfostr += "<div class='details_four'>";
+                unitinfostr += "<h1>营业时间</h1>";
+                unitinfostr += "<div class='details_three'><p>夏季：" + typeinfo.pubinfounit.businesstime + "</p><span>冬季：" + typeinfo.pubinfounit.businesstime + "</span></div>";
+                unitinfostr += "</div>";
+                
+                unitinfostr += "<div class='details_ten_one'>";
+                unitinfostr += "<h1>咨询电话</h1>";
+                unitinfostr += "<div class='details_six'><p>" + typeinfo.pubinfounit.zonecode + "-" + typeinfo.pubinfounit.telephone + "</p></div>";
+                unitinfostr += "</div>";
+                
+                unitinfostr += "<div class='details_seven'>";
+                unitinfostr += "<h1>门票价格</h1>";
+                unitinfostr += "<div class='details_six'><p>" + typeinfo.pubinfounit.ticketprice + "人</p></div>";
+                unitinfostr += "</div>";
+                
+                unitinfostr += "<div class='details_seven'>";
+                unitinfostr += "<h1>门票说明</h1>";
+                unitinfostr += "<div class='details_six'><p>" + getDesc(typeinfo.pubinfounit.tips) + "</p>";
+                unitinfostr += "</div>";
+                unitinfostr += "</div>";
+                
+                unitinfostr += "<div class='details_none'>";
+                unitinfostr += "<h1>优惠政策</h1>";
+                unitinfostr += "<div class='details_ten'><p>" + getDesc(typeinfo.pubinfounit.favouredpolicy) + "</p></div>";
+                unitinfostr += "</div>";
+                
+                unitinfostr += "</div>";
+                
+                //房型
+                if (typeinfo.typeinfo.existsroom) {
+                    unitinfostr += "<div class='room'>";
+                    unitinfostr += "<p>房&nbsp型</p>";
+                    
+                    unitinfostr += "<ul class='room_one'>";
+                    $.each(typeinfo.unitchilds, function (index, typeinfo) {
+                        unitinfostr += "<li><div class='row'><div class='left'><img class=''src=\'" + typeinfo.flagurl + "?width=116\'></div>";
+                        unitinfostr += "<div class='right'><div class='title'>" + typeinfo.childname + "</div>";
+                        // unitinfostr += "<li>房价：" + (typeinfo.price ||'-')+ "元/晚</li>"
+                        if (typeinfo.price) {
+                            unitinfostr += "<div class='price'>房价：" + typeinfo.price + "元/晚</div>"
+                        }
+                        unitinfostr += "</div></div>";
+                        unitinfostr += "<div class='row desc'>" + typeinfo.desc + "</div></li>"
+                        
+                    });
+                    unitinfostr += "</ul>";
+                    
+                    //子景区
+                    unitinfostr += "</div>"
+                } else {
+                    if (typeinfo.unitchilds.lenght) {
+                        unitinfostr += "<div class='spot'>";
+                        
+                        unitinfostr += "<p>子景区</p>";
+                        unitinfostr += "<ul class='spot_ten'>";
+                        $.each(typeinfo.unitchilds, function (index, typeinfo) {
+                            unitinfostr += "<li class='spot_four'><p class='spot_six'>狐仙园</p>";
+                            // unitinfostr += "<img src='' >";
+                            unitinfostr += "<a href='ditu.html'><p class='spot_two'>地图</p></a>";
+                            unitinfostr += "<img src=\'" + typeinfo.flagurl + "?width=262\'>";
+                            // unitinfostr += "<p>门票：" + typeinfo.price + "元/人</p>"
+                            if (typeinfo.price) {
+                                unitinfostr += "<div class='price'>房价：" + typeinfo.price + "元/晚</li></div>"
+                            }
+                            unitinfostr += "<p class='spot_five'> " + typeinfo.desc + "</p>"
+                            unitinfostr += "</li>";
+                        });
+                        
+                        
+                        unitinfostr += "</div>";
+                    }
+                    // unitinfostr += "<div class='deep'>"
+                }
+                
+                unitinfostr += "<div class='deep'>"//外面的deep盒子 start
+                
+                unitinfostr += "<div id='allmap' style='height: 250px;'></div>";
+                
+                unitinfostr += "<img src='images/zhao.png'>";
+                unitinfostr += "<h1 id='zb'>周边景点</h1>";
+                $.each(typeinfo.arounds, function (index, typeinfo) {
+                    //我推测如果typeorder的值为1 则对应为景点信息
+                    if (typeinfo.typeorder === 1) {
+                        unitinfostr += "<div class='deep_two'>";
+                        unitinfostr += "<img src=\'" + typeinfo.flagurl + "?width=170\'>";
+                        unitinfostr += "<h1>" + typeinfo.unitname + "</h1>";
+                        unitinfostr += "<p>" + getDesc(typeinfo.desc) + "</p>";
+                        unitinfostr += "</div>"
+                    }
+                });
+                //周边美食
+                unitinfostr += "<img src='images/mei.png'>";
+                unitinfostr += "<h1 id='zb'>周边美食</h1>";
+                $.each(typeinfo.arounds, function (index, typeinfo) {
+                    //我推测如果typeorder的值为4或者5 则对应为美食信息
+                    if (typeinfo.typeorder === 4 || typeinfo.typeorder === 5) {
+                        unitinfostr += "<div class='deep_two'>";
+                        unitinfostr += "<img src=\'" + typeinfo.flagurl + "?width=169\'>";
+                        unitinfostr += "<h1>" + typeinfo.unitname + "</h1>";
+                        unitinfostr += "<p>" + getDesc(typeinfo.desc) + "</p>";
+                        unitinfostr += "</div>"
+                    }
+                });
+                
+                //周边住宿
+                unitinfostr += "<img src='images/zhu.png'>";
+                unitinfostr += "<h1 id='zb'>周边住宿</h1>";
+                $.each(typeinfo.arounds, function (index, typeinfo) {
+                    //我推测如果typeorder的值为2 则对应为住宿信息
+                    if (typeinfo.typeorder === 2) {
+                        unitinfostr += "<div class='deep_two'>";
+                        unitinfostr += "<img src=\'" + typeinfo.flagurl + "?width=169\'>";
+                        unitinfostr += "<h1>" + typeinfo.unitname + "</h1>";
+                        unitinfostr += "<p>" + getDesc(typeinfo.desc) + "</p>";
+                        unitinfostr += "</div>"
+                    }
+                });
+                
+                unitinfostr += "</div>";         //外面的deep盒子 end
+                unitinfostr += "</div>";          //外面的details盒子 end
+            });
+            
+            // 将字符串插入到页面
+            $("#view").html(unitinfostr);
+            
+            // 地图
+            var _mapData = [];
+            
+            
+            _mapData.push({
+                unitname: data.data[0].pubinfounit.unitname,
+                gpsbd: data.data[0].pubinfounit.gpsbd,
+                address: data.data[0].pubinfounit.address
+            });
+            if (!data.data[0].pubinfounit.gpsbd) {
+                //周边景点
+                $("#allmap").hide();
+            } else {
+                createMap(_mapData);
+            }
+        }
+    });
+};

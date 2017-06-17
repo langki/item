@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="css/details.css">
+    <script src="https://cdn.zjwist.com/js/jscookier.js" type="text/javascript"></script>
+    <script src="https://api.map.baidu.com/getscript?v=2.0&ak=2d91410e115e9d061e1b606f4cce7d1c&services=&t=20170608143204"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/library/GeoUtils/1.2/src/GeoUtils_min.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" type="text/css">
+</head>
+
+<body>
+<div class="big">
+    
+    <section id="view">
+        <div class="top">
+            <!-- <h1>淄博聊斋城</h1> -->
+            <!-- <div class="top_one"> -->
+            <!-- <p>AAAA级景区</p> -->
+            <!-- </div> -->
+            <!-- <div class="top_two"> -->
+            <!-- <p>淄川区</p> -->
+        </div>
+
+</div>
+
+<!--<div class="slider" id="slider">-->
+
+<!--首尾加一张的目的是  滑动的时候  无缝衔接-->
+<!--<ul class="clearfix" id="clearfix">-->
+<!-- 首部加一张 -->
+<!--  <li class='now'><a href="#"><img src="./images/feng.png" alt=""/></a></li>
+
+<!-- 写死的三张轮播图 -->
+<!-- <li><a href="#"><img src="./images/feng.png" alt=""/></a></li>
+<li><a href="#"><img src="./images/feng.png" alt=""/></a></li>
+<li><a href="#"><img src="./images/feng.png" alt=""/></a></li>
+<li><a href="#"><img src="./images/feng.png" alt=""/></a></li>
+<li><a href="#"><img src="./images/feng.png" alt=""/></a></li>
+<li><a href="#"><img src="./images/feng.png" alt=""/></a></li>
+-->
+<!-- 尾部加一张 -->
+<!-- <li><a href="#"><img src="./images/feng.png" alt=""/></a></li>
+</ul>
+
+ <ul class="circle">
+     <li class="now"></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+     <li></li>
+ </ul> -->
+
+</div>
+
+<!--<div class=" article">-->
+<!-- <p>聊斋城是以园林为表现形式，以聊斋故事为肢体的群组式的大型名园景区，位于淄博市淄川区洪山镇蒲家庄。这里是世界短篇小说知网蒲松龄的故里。上东升五大旅游景区之一。</p>
+
+<p>淄博聊斋城的组成部分成陈列馆、狐仙园、石隐园。聊斋宫、满井寺、观狐园六部分。聊斋城旅游景区内的蒲松龄纪念馆，较为完整的保留了蒲松龄当年居住的原貌。故居为典型的北方农村院落，郭沫若题写的“蒲松龄故居”的金字匾，高悬故居大门。院内有蒲松龄当年著书的聊斋</p>
+
+<h1>查看全部简介</h1> -->
+<!-- <div id="triangle-right"></div> -->
+
+<!--</div>-->
+
+
+<!-- <div class="details">
+
+     <div class="details_one">
+         <h1>地&nbsp址</h1>
+         <div class="details_two"><p>蒲家庄386号</p></div>
+
+
+      <div class="details_four">
+         <h1>营业时间</h1>
+         <div class="details_three"><p>夏季：7:30-18:00</p><span>冬季：8:30-17:00</span>
+         </div>
+
+     </div>
+
+
+
+      <div class="details_ten">
+         <h1 id="details_ten">咨询电话</h1>
+         <div class="details_six"><p>0571-88888888</p>
+         </div>
+
+     </div>
+
+
+
+      <div class="details_seven">
+         <h1>门票价格</h1>
+         <div class="details_six"><p>50/人</p>
+         </div>
+
+     </div>
+
+
+
+      <div class="details_seven">
+         <h1>门票说明</h1>
+         <div class="details_six"><p>人/40元（团体）</p>
+         </div>
+
+     </div>
+
+
+     <div class="details_none">
+         <h1>优惠政策</h1>
+         <div class="details_ten"><p>1.2米以下儿童、70岁以上老人、残疾人、现役军人凭有效证件，享受免票</p>
+                                  <span>60-69岁老人、学生凭有效证件享受半价大学生、老年人（60岁以上）、特困职工、现役军人凭有效证件人/20次、中小学生凭参观证/10人</span>
+         </div>
+
+     </div>
+
+
+
+<div class="spot">
+   <p>子景区</p>
+
+   <p>狐仙园</p>
+   <a href="ditu.html"><img src="images/hu.png" alt=""></a>
+
+   <p>地图</p>
+   <img src="images/li.png" alt="">
+
+   <p>门票人/人20</p>
+
+   <div class="spot_one">
+       <p>淄博聊斋城的组成部分成陈列馆、狐仙园、石隐园。聊斋宫、满井寺、观狐园六部分。聊斋城旅游景区内的蒲松龄纪念馆，较为完整的保留了蒲松龄当年居住的原貌.</p>
+   </div>
+
+</div>
+
+
+<div class="spot">
+   <p>子景区</p>
+
+   <p>摘草莓</p>
+   <a href="ditu.html"><img src="images/hu.png" alt=""></a>
+
+   <p>地图</p>
+   <img src="images/nv.png" alt="">
+
+   <p>门票人/人80</p>
+
+   <div class="spot_one">
+       <p>淄博聊斋城的组成部分成陈列馆、狐仙园、石隐园。聊斋宫、满井寺、观狐园六部分。聊斋城旅游景区内的蒲松龄纪念馆，较为完整的保留了蒲松龄当年居住的原貌.</p>
+   </div>
+
+</div>
+-->
+
+<!-- <div class="room"> -->
+<!-- <p>房&nbsp型</p>
+ <ul class="room_one">
+    <li> <img class="room_two" src="images/big.png" alt=""></li>
+    <li>大床房</li>
+    <li>房价：325元/晚</li>
+    <li>淄博聊斋城的组成部分成陈列馆、狐仙园、石隐园。聊斋宫、满井寺、观狐园六部分。</li>
+</ul> -->
+<!-- <ul>
+   <li> <img src="images/big.png" alt=""></li>
+   <li><p>大床房</p></li>
+   <li><p>房价：325元/晚</p></li>
+   <li><p>淄博聊斋城的组成部分成陈列馆、狐仙园、石隐园。聊斋宫、满井寺、观狐园六部分。</p></li>
+</ul>
+<img src="images/small.png" alt="">
+
+<p>双床房</p>
+
+<p>房价：525元/晚</p>
+
+<p>淄博聊斋城的组成部分成陈列馆、狐仙园、石隐园。聊斋宫、满井寺、观狐园六部分。</p>
+
+
+
+<img src="images/small.png" alt="">
+
+<p>双床房</p>
+
+<p>房价：525元/晚</p>
+
+<p>淄博聊斋城的组成部分成陈列馆、狐仙园、石隐园。聊斋宫、满井寺、观狐园六部分。</p>
+
+</div> -->
+<!-- </div> -->
+<!-- <div class="map">
+    <img src="images/di.png" alt="">
+</div>
+ <!--<div id="map" style="width: 100%;height:300px;"></div>-->
+
+<!--<div class="deep">-->
+<!--<img src="images/zhao.png" alt="">-->
+
+<!--<h1 id="zb">周边景点</h1>-->
+
+<!--<div class="deep_one">-->
+
+<!--<div class="deep_two">-->
+<!--<img src="images/ta.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_three">-->
+<!--<img src="images/ta.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_one">-->
+
+<!--<div class="deep_two">-->
+<!--<img src="images/ta.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_three">-->
+<!--<img src="images/ta.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="deep">-->
+<!--<div id="allmap" style="height: 200px; width: 100%;"></div>-->
+<!--<div id="map" style="width: 100%; height:  300px;"></div>-->
+<!---->
+<!--<img src="images/mei.png" alt="">-->
+<!---->
+<!--<h1 id="zb">周边美食</h1>-->
+
+<!--<div class="deep_one">-->
+
+<!--<div class="deep_two">-->
+<!--<img src="images/chang.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_three">-->
+<!--<img src="images/chang.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_one">-->
+
+<!--<div class="deep_two">-->
+<!--<img src="images/chang.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_three">-->
+<!--<img src="images/chang.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="deep">-->
+<!--<img src="images/zhu.png" alt="">-->
+
+<!--<h1 id="zb">周边住宿</h1>-->
+
+<!--<div class="deep_one">-->
+
+<!--<div class="deep_two">-->
+<!--<img src="images/jiu.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_three">-->
+<!--<img src="images/jiu.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_one">-->
+
+<!--<div class="deep_two">-->
+<!--<img src="images/jiu.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+
+
+<!--<div class="deep_three">-->
+<!--<img src="images/jiu.png" alt="">-->
+
+<!--<h1>景点名称</h1>-->
+
+<!--<p>淄博聊斋城的组成部分成陈列馆。</p>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--</div>-->
+
+
+</section>
+
+
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/rem.js"></script>
+<!--<script src="js/common.js"></script>-->
+<script src="js/slider.js?s"></script>
+<script src="js/details.js?sddhhhs"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $(document).on("click", ".J-table-list + h1", function () {
+           $(".J-table-list").toggleClass("description");
+           $(this).toggleClass("up");
+        });
+    })
+</script>
+
+<script>
+    $(function () {
+        $(document).on("click", ".J-details_ten", function () {
+            $(".J-details_ten").toggleClass("detailss");
+            $(this).toggleClass("up");
+        });
+    })
+    
+</script>
+</body>
+
+</html>
