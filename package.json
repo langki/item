@@ -1,0 +1,22 @@
+{
+  "name": "langker",
+  "version": "1.0.0",
+  "description": "vue项目",
+  "main": "demo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langki/item.git"
+  },
+  "keywords": [
+    "hl4778804"
+  ],
+  "author": "langker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/langki/item/issues"
+  },
+  "homepage": "https://github.com/langki/item#readme"
+}
